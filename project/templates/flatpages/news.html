@@ -1,0 +1,23 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>'Новости'</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<a>"Войдите, чтобы копить и тратить баллы"</a>-->
+<!--</body>-->
+<!--</html>-->
+
+{% extends 'flatpages/default.html' %}
+
+
+{% block title %}
+New
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
+{% block content %}
+<h1>{{ new }}</h1>
+
+{% endblock content %}

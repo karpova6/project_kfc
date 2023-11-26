@@ -29,23 +29,27 @@ class Order(models.Model):
         else:
             return (datetime.now() - self.time_in).total_seconds()
 
- class Product(models.Model):
+class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.FloatField(default=0.0)
 
-    cap_big = Product.objects.create(name="Монитор", price=9999.0)
-    product_2 = Product.objects.create(name="Клавиатура", price=1060.0)
-    product_3 = Product.objects.create(name="Витая пара 1 м", price=109.0)
 
- class Staff(models.Model):
+class Staff(models.Model):
+    director = 'DI'
+    admin = 'AD'
+    cook = 'CO'
+    cashier = 'CA'
+    cleaner = 'CL'
+
     full_name = models.CharField(max_length=255)
-    position = models.CharField(max_length=255,choices=POSITIONS,default=cashier)
-    labor_contract = models. IntegerField()
+    position = models.CharField(max_length=2, choices=POSITIONS, default=cashier)
+    labor_contract = models.IntegerField()
+
 
 class ProductOrder(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    _amount = models.IntegerField(default=1,db_column='amount')
+    _amount = models.IntegerField(default=1, db_column='amount')
 
     def product_sum(self):
         return self.product.price * self.amount
@@ -58,8 +62,5 @@ class ProductOrder(models.Model):
     def amount(self, value):
         self._amount = int(value) if value >= 0 else 0
         self.save()
-
-
-
 
 
