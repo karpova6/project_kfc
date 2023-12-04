@@ -32,6 +32,7 @@ class Order(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.FloatField(default=0.0)
+    composition = models.TextField(default="Состав не указан")
 
 
 class Staff(models.Model):
